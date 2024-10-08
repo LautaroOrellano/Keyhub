@@ -1,15 +1,17 @@
 package KeyLab.keylab.domain.category;
 
-import KeyLab.keylab.domain.item.Keyboard;
+import KeyLab.keylab.domain.item.Item;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Set;
 
-@Entity
-@Getter
-@Setter
+@Entity(name = "category")
+@Data
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -19,7 +21,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private Set<Keyboard> keyboards;
-
+    @JsonIgnore
+    private Set<Item> items;
 
 }
